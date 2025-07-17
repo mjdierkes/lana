@@ -23,6 +23,12 @@
       "description": "",
       "branch": "auto",
       "last_updated": "2025-07-16T20:32:15.841550"
+    },
+    "rdev": {
+      "url": "https://github.com/Narsil/rdev",
+      "description": "",
+      "branch": "auto",
+      "last_updated": "2025-07-16T21:08:54.517663"
     }
   },
   "config": {
