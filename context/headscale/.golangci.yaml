@@ -1,0 +1,80 @@
+---
+version: "2"
+linters:
+  default: all
+  disable:
+    - cyclop
+    - depguard
+    - dupl
+    - exhaustruct
+    - funlen
+    - gochecknoglobals
+    - gochecknoinits
+    - gocognit
+    - godox
+    - interfacebloat
+    - ireturn
+    - lll
+    - maintidx
+    - makezero
+    - musttag
+    - nestif
+    - nolintlint
+    - paralleltest
+    - revive
+    - tagliatelle
+    - testpackage
+    - varnamelen
+    - wrapcheck
+    - wsl
+  settings:
+    gocritic:
+      disabled-checks:
+        - appendAssign
+        - ifElseChain
+    nlreturn:
+      block-size: 4
+    varnamelen:
+      ignore-names:
+        - err
+        - db
+        - id
+        - ip
+        - ok
+        - c
+        - tt
+        - tx
+        - rx
+        - sb
+        - wg
+        - pr
+        - p
+        - p2
+      ignore-type-assert-ok: true
+      ignore-map-index-ok: true
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+      - gen
+
+formatters:
+  enable:
+    - gci
+    - gofmt
+    - gofumpt
+    - goimports
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+      - gen

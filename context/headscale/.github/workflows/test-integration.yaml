@@ -1,0 +1,101 @@
+name: integration
+# To debug locally on a branch, and when needing secrets
+# change this to include `push` so the build is ran on
+# the main repository.
+on: [pull_request]
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+jobs:
+  sqlite:
+    strategy:
+      fail-fast: false
+      matrix:
+        test:
+          - TestACLHostsInNetMapTable
+          - TestACLAllowUser80Dst
+          - TestACLDenyAllPort80
+          - TestACLAllowUserDst
+          - TestACLAllowStarDst
+          - TestACLNamedHostsCanReachBySubnet
+          - TestACLNamedHostsCanReach
+          - TestACLDevice1CanAccessDevice2
+          - TestPolicyUpdateWhileRunningWithCLIInDatabase
+          - TestACLAutogroupMember
+          - TestACLAutogroupTagged
+          - TestAuthKeyLogoutAndReloginSameUser
+          - TestAuthKeyLogoutAndReloginNewUser
+          - TestAuthKeyLogoutAndReloginSameUserExpiredKey
+          - TestOIDCAuthenticationPingAll
+          - TestOIDCExpireNodesBasedOnTokenExpiry
+          - TestOIDC024UserCreation
+          - TestOIDCAuthenticationWithPKCE
+          - TestOIDCReloginSameNodeNewUser
+          - TestAuthWebFlowAuthenticationPingAll
+          - TestAuthWebFlowLogoutAndRelogin
+          - TestUserCommand
+          - TestPreAuthKeyCommand
+          - TestPreAuthKeyCommandWithoutExpiry
+          - TestPreAuthKeyCommandReusableEphemeral
+          - TestPreAuthKeyCorrectUserLoggedInCommand
+          - TestApiKeyCommand
+          - TestNodeTagCommand
+          - TestNodeAdvertiseTagCommand
+          - TestNodeCommand
+          - TestNodeExpireCommand
+          - TestNodeRenameCommand
+          - TestNodeMoveCommand
+          - TestPolicyCommand
+          - TestPolicyBrokenConfigCommand
+          - TestDERPVerifyEndpoint
+          - TestResolveMagicDNS
+          - TestResolveMagicDNSExtraRecordsPath
+          - TestDERPServerScenario
+          - TestDERPServerWebsocketScenario
+          - TestPingAllByIP
+          - TestPingAllByIPPublicDERP
+          - TestEphemeral
+          - TestEphemeralInAlternateTimezone
+          - TestEphemeral2006DeletedTooQuickly
+          - TestPingAllByHostname
+          - TestTaildrop
+          - TestUpdateHostnameFromClient
+          - TestExpireNode
+          - TestNodeOnlineStatus
+          - TestPingAllByIPManyUpDown
+          - Test2118DeletingOnlineNodePanics
+          - TestEnablingRoutes
+          - TestHASubnetRouterFailover
+          - TestSubnetRouteACL
+          - TestEnablingExitRoutes
+          - TestSubnetRouterMultiNetwork
+          - TestSubnetRouterMultiNetworkExitNode
+          - TestAutoApproveMultiNetwork
+          - TestSubnetRouteACLFiltering
+          - TestHeadscale
+          - TestTailscaleNodesJoiningHeadcale
+          - TestSSHOneUserToAll
+          - TestSSHMultipleUsersAllToAll
+          - TestSSHNoSSHConfigured
+          - TestSSHIsBlockedInACL
+          - TestSSHUserOnlyIsolation
+    uses: ./.github/workflows/integration-test-template.yml
+    with:
+      test: ${{ matrix.test }}
+      postgres_flag: "--postgres=0"
+      database_name: "sqlite"
+  postgres:
+    strategy:
+      fail-fast: false
+      matrix:
+        test:
+          - TestACLAllowUserDst
+          - TestPingAllByIP
+          - TestEphemeral2006DeletedTooQuickly
+          - TestPingAllByIPManyUpDown
+          - TestSubnetRouterMultiNetwork
+    uses: ./.github/workflows/integration-test-template.yml
+    with:
+      test: ${{ matrix.test }}
+      postgres_flag: "--postgres=1"
+      database_name: "postgres"
