@@ -1,0 +1,13 @@
+{
+  "name": "lana-backend",
+  "version": "0.1.0",
+  "description": "LANA Backend - Tauri Rust App",
+  "scripts": {
+    "tauri": "@tauri-apps/cli",
+    "dev": "tauri dev",
+    "build": "tauri build"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.6.2"
+  }
+} 
