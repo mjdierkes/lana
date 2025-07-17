@@ -29,6 +29,12 @@
       "description": "",
       "branch": "auto",
       "last_updated": "2025-07-16T21:08:54.517663"
+    },
+    "RustDesk": {
+      "url": "https://github.com/rustdesk/rustdesk",
+      "description": "",
+      "branch": "auto",
+      "last_updated": "2025-07-17T09:15:27.537988"
     }
   },
   "config": {
