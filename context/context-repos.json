@@ -1,0 +1,36 @@
+{
+  "repositories": {
+    "tauri": {
+      "url": "https://github.com/tauri-apps/tauri",
+      "description": "Build smaller, faster, and more secure desktop and mobile applications with a web frontend",
+      "branch": "auto",
+      "last_updated": null
+    },
+    "tailscale": {
+      "url": "https://github.com/tailscale/tailscale",
+      "description": "The easiest, most secure way to use WireGuard and 2FA",
+      "branch": "auto",
+      "last_updated": null
+    },
+    "headscale": {
+      "url": "https://github.com/juanfont/headscale",
+      "description": "An open source, self-hosted implementation of the Tailscale control server",
+      "branch": "auto",
+      "last_updated": null
+    },
+    "TigerVNC": {
+      "url": "https://github.com/TigerVNC/tigervnc",
+      "description": "",
+      "branch": "auto",
+      "last_updated": "2025-07-16T20:32:15.841550"
+    }
+  },
+  "config": {
+    "context_dir": ".",
+    "auto_update": false,
+    "parallel_fetch": true,
+    "max_parallel": 3,
+    "auto_commit": true,
+    "auto_push": true
+  }
+}
